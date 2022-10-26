@@ -1,6 +1,5 @@
 package com.sdu.network;
 
-import com.sdu.network.environment.NetworkEnvironmentActivity;
 import com.sdu.network.errorhandler.ExceptionHandler;
 import com.sdu.network.errorhandler.HttpErrorHandler;
 import com.sdu.network.interceptor.RequestInterceptor;
@@ -33,7 +32,6 @@ public class NetworkApi {
     private static INetworkRequiredInfo iNetworkRequiredInfo;
     private static OkHttpClient okHttpClient;   // OkHttp客户端
     private static String mBaseUrl;             // API访问地址
-    private static boolean isFormal = true;     // 是否为正式环境
     private static HashMap<String, Retrofit> retrofitHashMap = new HashMap<>();
 
     /**
@@ -132,15 +130,7 @@ public class NetworkApi {
      */
     public static void init(INetworkRequiredInfo networkRequiredInfo) {
         iNetworkRequiredInfo = networkRequiredInfo;
-        // 当初始化这个NetworkApi时，会判断当前App的网络环境
-        isFormal = NetworkEnvironmentActivity.isFormalEnvironment(networkRequiredInfo.getApplicationContext());
-        if (isFormal) {
-            // 正式环境
-            mBaseUrl = "http://service.picasso.adesk.com";
-        } else {
-            // 测试环境
-            mBaseUrl = "http://service.picasso.adesk.com";
-        }
+        mBaseUrl = "http://8.142.10.225:8081";
     }
 
     /**

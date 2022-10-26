@@ -1,6 +1,6 @@
 package com.sdu.framework.api;
 
-import com.sdu.framework.bean.WallPaperResponse;
+import com.sdu.framework.bean.UserResponse;
 
 import io.reactivex.Observable;
 import retrofit2.http.GET;
@@ -11,8 +11,8 @@ import retrofit2.http.GET;
 public interface ApiService {
 
     /**
-     * 获取热门壁纸列表
+     * 检查用户名和密码是否一致
      */
-    @GET("/v1/vertical/vertical?limit=30&skip=180&adult=false&first=0&order=hot")
-    Observable<WallPaperResponse> getWallPaper();
+    @GET("/api/checkUserInfo?userName=djn&password=123")
+    Observable<UserResponse> checkUser();
 }
